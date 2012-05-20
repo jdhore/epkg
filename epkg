@@ -1,0 +1,39 @@
+#!/bin/bash
+
+if [[ $1 = search ]]; then
+	eix $2
+fi
+
+# Let's do this the lazy way for multiple params...Because I am lazy
+if [[ $1 = install ]]; then
+	emerge -av $2 $3 $4 $5 $6 $7 $8 $9 ${10} ${11} ${12} ${13} ${14} ${15} ${16} ${17} ${18} ${19} ${20} ${21} ${22} ${23} ${24} ${25} ${26} ${27} ${28} ${29} ${30} ${31} ${32} ${33} ${34} ${35} ${36} ${37} ${38} ${39} ${40}
+fi
+
+if [[ $1 = remove || $1 = uninstall ]]; then
+	emerge --depclean -av $2 $3 $4 $5 $6 $7 $8 $9 ${10} ${11} ${12} ${13} ${14} ${15} ${16} ${17} ${18} ${19} ${20} ${21} ${22} ${23} ${24} ${25} ${26} ${27} ${28} ${29} ${30} ${31} ${32} ${33} ${34} ${35} ${36} ${37} ${38} ${39} ${40}
+fi
+
+if [[ $1 = update ]]; then
+	eix-sync
+fi
+
+if [[ $1 = upgrade ]]; then
+	# Make it portage 2.1-safe and make sure it catches EVERYTHING.
+	emerge -uDvaN --with-bdeps=y @system world
+fi
+
+if [[ $1 = listfiles ]]; then
+	equery files $2
+fi
+
+if [[ $1 = listinstalled ]]; then
+	equery list $2
+fi
+
+if [[ $1 = forceremove ]]; then
+	emerge --unmerge -av $2 $3 $4 $5 $6 $7 $8 $9 ${10} ${11} ${12} ${13} ${14} ${15} ${16} ${17} ${18} ${19} ${20} ${21} ${22} ${23} ${24} ${25} ${26} ${27} ${28} ${29} ${30} ${31} ${32} ${33} ${34} ${35} ${36} ${37} ${38} ${39} ${40}
+fi
+
+if [[ -z $1 ]]; then
+	echo "Usage: epkg install|remove|update|upgrade|search|listfiles|listinstalled|forceremove [package(s)]"
+fi
