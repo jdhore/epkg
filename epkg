@@ -1,41 +1,39 @@
 #! /bin/bash
 
 action=$1
-packages=($*)
-unset packages[0]
+shift
 
 if [[ "x$action" = "xsearch" ]]; then
-	eix ${packages[@]}
+	eix "$*"
 fi
 
-# Let's do this the lazy way for multiple params...Because I am lazy
 if [[ "x$action" = "xinstall" ]]; then
-	emerge -av ${packages[@]}
+	emerge -av "$*"
 fi
 
 if [[ "x$action" = "xremove" || "x$action" = "xuninstall" ]]; then
-	emerge --depclean -av ${packages[@]}
+	emerge --depclean -av "$*"
 fi
 
 if [[ "x$action" = "xupdate" ]]; then
-	eix-sync
+	eix-sync "$*"
 fi
 
 if [[ "x$action" = "xupgrade" ]]; then
 	# Make it portage 2.1-safe and make sure it catches EVERYTHING.
-	emerge -uDvaN --with-bdeps=y @system world
+	emerge -uDvaN --with-bdeps=y @system world "$*"
 fi
 
 if [[ "x$action" = "xlistfiles" ]]; then
-	equery files ${packages[@]}
+	equery files "$*"
 fi
 
 if [[ "x$action" = "xlistinstalled" ]]; then
-	equery list ${packages[@]}
+	equery list "$*"
 fi
 
 if [[ "x$action" = "xforceremove" ]]; then
-	emerge --unmerge -av ${packages[@]}
+	emerge --unmerge -av "$*"
 fi
 
 if [[ -z $1 ]]; then
