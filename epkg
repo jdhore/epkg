@@ -29,7 +29,16 @@ case "$action" in
 	forceremove)
 		emerge --unmerge -av "$*"
 		;;
+	autoclean)
+		# Keep fetch-restricted distfiles, because refetching is painful
+		eclean-dist -df "$*"
+		;;
+	clean)
+		# We need DISTDIR, and this is the best way to get it that I've found
+		eval "$(emerge --info | grep -P '^DISTDIR=')"
+		rm -rfI $DISTDIR/* "$*"
+		;;
 	*)
-		echo "Usage: epkg install|remove|uninstall|update|upgrade|dist-upgrade|search|listfiles|listinstalled|forceremove [package(s)]"
+		echo "Usage: epkg install|remove|uninstall|update|upgrade|dist-upgrade|search|listfiles|listinstalled|forceremove|autoclean|clean [package(s)]"
 		;;
 esac
