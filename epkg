@@ -5,38 +5,38 @@ shift
 
 case "$action" in
 	search)
-		eix "$*"
+		eix "$@"
 		;;
 	install)
-		emerge -av "$*"
+		emerge -av "$@"
 		;;
 	remove | uninstall)
-		emerge --depclean -av "$*"
+		emerge --depclean -av "$@"
 		;;
 	update)
-		eix-sync "$*"
+		eix-sync "$@"
 		;;
 	upgrade | dist-upgrade)
 		# Make it portage 2.1-safe and make sure it catches EVERYTHING.
-		emerge -uDvaN --with-bdeps=y @system world "$*"
+		emerge -uDvaN --with-bdeps=y @system world "$@"
 		;;
 	listfiles)
-		equery files "$*"
+		equery files "$@"
 		;;
 	listinstalled)
-		equery list "$*"
+		equery list "$@"
 		;;
 	forceremove)
-		emerge --unmerge -av "$*"
+		emerge --unmerge -av "$@"
 		;;
 	autoclean)
 		# Keep fetch-restricted distfiles, because refetching is painful
-		eclean-dist -df "$*"
+		eclean-dist -df "$@"
 		;;
 	clean)
 		# We need DISTDIR, and this is the best way to get it that I've found
 		eval "$(emerge --info | grep -P '^DISTDIR=')"
-		rm -rfI $DISTDIR/* "$*"
+		rm -rfI $DISTDIR/* "$@"
 		;;
 	*)
 		echo "Usage: epkg install|remove|uninstall|update|upgrade|dist-upgrade|search|listfiles|listinstalled|forceremove|autoclean|clean [package(s)]"
