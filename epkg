@@ -3,39 +3,33 @@
 action=$1
 shift
 
-if [[ "x$action" = "xsearch" ]]; then
-	eix "$*"
-fi
-
-if [[ "x$action" = "xinstall" ]]; then
-	emerge -av "$*"
-fi
-
-if [[ "x$action" = "xremove" || "x$action" = "xuninstall" ]]; then
-	emerge --depclean -av "$*"
-fi
-
-if [[ "x$action" = "xupdate" ]]; then
-	eix-sync "$*"
-fi
-
-if [[ "x$action" = "xupgrade" ]]; then
-	# Make it portage 2.1-safe and make sure it catches EVERYTHING.
-	emerge -uDvaN --with-bdeps=y @system world "$*"
-fi
-
-if [[ "x$action" = "xlistfiles" ]]; then
-	equery files "$*"
-fi
-
-if [[ "x$action" = "xlistinstalled" ]]; then
-	equery list "$*"
-fi
-
-if [[ "x$action" = "xforceremove" ]]; then
-	emerge --unmerge -av "$*"
-fi
-
-if [[ -z $1 ]]; then
-	echo "Usage: epkg install|remove|update|upgrade|search|listfiles|listinstalled|forceremove [package(s)]"
-fi
+case "$action" in
+	search)
+		eix "$*"
+		;;
+	install)
+		emerge -av "$*"
+		;;
+	remove | uninstall)
+		emerge --depclean -av "$*"
+		;;
+	update)
+		eix-sync "$*"
+		;;
+	upgrade | dist-upgrade)
+		# Make it portage 2.1-safe and make sure it catches EVERYTHING.
+		emerge -uDvaN --with-bdeps=y @system world "$*"
+		;;
+	listfiles)
+		equery files "$*"
+		;;
+	listinstalled)
+		equery list "$*"
+		;;
+	forceremove)
+		emerge --unmerge -av "$*"
+		;;
+	*)
+		echo "Usage: epkg install|remove|uninstall|update|upgrade|dist-upgrade|search|listfiles|listinstalled|forceremove [package(s)]"
+		;;
+esac
