@@ -38,6 +38,12 @@ case "$action" in
 		eval "$(emerge --info | grep -P '^DISTDIR=')"
 		rm -rfI $DISTDIR/* "$@"
 		;;
+	moo)
+		emerge --moo
+		;;
+	machinegod)
+		echo "Only the zmedico can fix your machine god."
+		;;
 	*)
 		echo "Usage: epkg install|remove|uninstall|update|upgrade|dist-upgrade|search|listfiles|listinstalled|forceremove|autoclean|clean [package(s)]"
 		;;
