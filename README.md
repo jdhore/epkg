@@ -10,6 +10,11 @@ Patches and pull requests are welcome.
     
 	emerge epkg
 
+## Authors ##
+* Jeff Horelick <jdhore@gentoo.org>
+* Douglas Freed <dwfreed@mtu.edu>
+* Miramir <gmiramir@gmail.com>
+
 ## Licensing ##
 
 This code is licensed under the Public Domain.
