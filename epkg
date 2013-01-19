@@ -4,6 +4,7 @@ action=$1
 shift
 
 case "$action" in
+	# "Standard" action commands, used regularly
 	search)
 		eix "$@"
 		;;
@@ -20,15 +21,6 @@ case "$action" in
 		# Make it portage 2.1-safe and make sure it catches EVERYTHING.
 		emerge -uDvaN --with-bdeps=y @system world "$@"
 		;;
-	listfiles)
-		equery files "$@"
-		;;
-	listinstalled)
-		equery list "$@"
-		;;
-	forceremove)
-		emerge --unmerge -av "$@"
-		;;
 	autoclean)
 		# Keep fetch-restricted distfiles, because refetching is painful
 		eclean-dist -df "$@"
@@ -38,12 +30,36 @@ case "$action" in
 		eval "$(emerge --info | grep -P '^DISTDIR=')"
 		rm -rfI $DISTDIR/* "$@"
 		;;
+	forceremove)
+		emerge --unmerge -av "$@"
+		;;
+	# info commands
+	listfiles)
+		equery files "$@"
+		;;
+	listinstalled)
+		equery list "$@"
+		;;
+	provides)
+		equery belongs "$@"
+		;;
+	verify)
+		equery check "$@"
+		;;
+	verifyall)
+		equery check
+		;;
+	# random commands
 	moo)
 		emerge --moo
 		;;
 	machinegod)
 		echo "Only the zmedico can fix your machine god."
 		;;
+	sysinfo)
+		emerge --info
+		;;
+	# fallthrough
 	*)
 		echo "Usage: epkg install|remove|uninstall|update|upgrade|dist-upgrade|search|listfiles|listinstalled|forceremove|autoclean|clean [package(s)]"
 		;;
