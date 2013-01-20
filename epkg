@@ -27,7 +27,11 @@ case "$action" in
 		;;
 	clean)
 		DISTDIR=$(portageq distdir)
-		rm -rfI $DISTDIR/* "$@"
+		read -n 1 -p "Are you sure you'd like to remove ALL files and folders within ${DISTDIR}? [yN] "
+		echo;
+		if [ "$REPLY" = 'y' -o "$REPLY" = 'Y' ]; then
+			rm -rf $DISTDIR/* "$@"
+		fi
 		;;
 	forceremove)
 		emerge --unmerge -av "$@"
