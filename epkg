@@ -26,8 +26,7 @@ case "$action" in
 		eclean-dist -df "$@"
 		;;
 	clean)
-		# We need DISTDIR, and this is the best way to get it that I've found
-		eval "$(emerge --info | grep -P '^DISTDIR=')"
+		DISTDIR=$(portageq distdir)
 		rm -rfI $DISTDIR/* "$@"
 		;;
 	forceremove)
