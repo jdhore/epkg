@@ -21,6 +21,9 @@ case "$action" in
 		# Make it portage 2.1-safe and make sure it catches EVERYTHING.
 		emerge -uDvaN --with-bdeps=y @system world "$@"
 		;;
+	autoremove)
+		emerge --depclean -a "$@"
+		;;
 	autoclean)
 		# Keep fetch-restricted distfiles, because refetching is painful
 		eclean-dist -df "$@"
