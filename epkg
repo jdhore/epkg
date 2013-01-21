@@ -5,13 +5,13 @@ shift
 
 case "$action" in
 	# "Standard" action commands, used regularly
-	search)
+	search | -s)
 		eix "$@"
 		;;
-	install)
+	install | -i)
 		emerge -av "$@"
 		;;
-	remove | uninstall)
+	remove | uninstall | -r)
 		emerge --depclean -av "$@"
 		;;
 	update)
@@ -64,6 +64,6 @@ case "$action" in
 		;;
 	# fallthrough
 	*)
-		echo "Usage: epkg install|remove|uninstall|update|upgrade|dist-upgrade|search|listfiles|listinstalled|forceremove|autoclean|clean [package(s)]"
+		echo "Usage: epkg install|remove|uninstall|update|upgrade|dist-upgrade|search|listfiles|listinstalled|provides|verify|verifyall|sysinfo|forceremove|autoclean|clean [package(s)]"
 		;;
 esac
