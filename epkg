@@ -53,7 +53,7 @@ case "$action" in
 		equery check -o "$@"
 		;;
 	verifyall)
-		equery check -o '*'
+		equery check -o '*' "$@"
 		;;
 	# random commands
 	moo)
@@ -63,7 +63,7 @@ case "$action" in
 		echo "Only the zmedico can fix your machine god."
 		;;
 	sysinfo)
-		emerge --info
+		emerge --info "$@"
 		;;
 	# fallthrough
 	*)
