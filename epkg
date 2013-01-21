@@ -50,10 +50,10 @@ case "$action" in
 		equery belongs "$@"
 		;;
 	verify)
-		equery check "$@"
+		equery check -o "$@"
 		;;
 	verifyall)
-		equery check '*'
+		equery check -o '*'
 		;;
 	# random commands
 	moo)
