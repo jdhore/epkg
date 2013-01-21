@@ -1,0 +1,88 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "EPKG" "1" "January 2013" "" ""
+.
+.SH "NAME"
+\fBepkg\fR \- A friendly wrapper for Gentoo package managment commands\.
+.
+.SH "SYNOPSIS"
+\fBepkg\fR COMMAND [PACKAGE]
+.
+.SH "DESCRIPTION"
+Run COMMAND optionally against PACKAGE(s)\.
+.
+.SH "COMMANDS"
+.
+.TP
+\fBinstall\fR
+Install a package (or packages)\.
+.
+.TP
+\fBremove\fR
+Remove a package (or packages)\.
+.
+.TP
+\fBuninstall\fR
+Alias for remove\.
+.
+.TP
+\fBsearch\fR
+Search all enabled repositories for PACKAGE\.
+.
+.TP
+\fBupdate\fR
+Update package listing and package search database\.
+.
+.TP
+\fBupgrade\fR
+Check all packages on system for available upgrades\.
+.
+.TP
+\fBdist\-upgrade\fR
+Alias for upgrade\.
+.
+.TP
+\fBautoclean\fR
+Remove unneeded distfiles\.
+.
+.TP
+\fBclean\fR
+Remove ALL distfiles\. Take care when using this command\.
+.
+.TP
+\fBforceremove\fR
+Forcibly uninstall a package\. Take care when using this command as reverse dependencies are NOT checked\.
+.
+.TP
+\fBlistfiles\fR
+List all files installed by a given PACKAGE\.
+.
+.TP
+\fBlistinstalled\fR
+List all packages currently installed matching a given pattern\.
+.
+.TP
+\fBprovides\fR
+List what package a provides a given filepath\.
+.
+.TP
+\fBverify\fR
+Verify integrity of installed files for a given installed package\.
+.
+.TP
+\fBverifyall\fR
+Verify integrity of all files on the system installed from the package manager\.
+.
+.TP
+\fBsysinfo\fR
+Display some system information useful for debugging and support\.
+.
+.SH "EXAMPLES"
+\fBepkg install firefox\-bin\fR: Install the firefox\-bin package\.
+.
+.P
+\fBepkg autoclean\fR
+.
+.SH "SEE ALSO"
+emerge(1), eix(1), equery(1)
