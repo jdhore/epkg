@@ -50,7 +50,7 @@ case "$action" in
 		equery check "$@"
 		;;
 	verifyall)
-		equery check
+		equery check '*'
 		;;
 	# random commands
 	moo)
