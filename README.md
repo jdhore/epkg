@@ -15,6 +15,16 @@ Patches and pull requests are welcome.
 * Douglas Freed <dwfreed@mtu.edu>
 * Miramir <gmiramir@gmail.com>
 
+## Dependencies ##
+
+If you would like to install epkg manually, the dependencies are as follows:
+
+* Portage
+* gentoolkit
+* eix
+
+epkg is currently only Gentoo and Funtoo compatible. Compatibility with other distributions may be added in the future.
+
 ## Licensing ##
 
 This code is licensed under the Public Domain.
