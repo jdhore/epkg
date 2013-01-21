@@ -67,6 +67,37 @@ case "$action" in
 		;;
 	# fallthrough
 	*)
-		echo "Usage: epkg install|remove|uninstall|update|upgrade|dist-upgrade|search|listfiles|listinstalled|provides|verify|verifyall|sysinfo|forceremove|autoclean|clean [package(s)]"
+		# UUOC because there's no other way
+		cat <<-"EOH"
+			Usage: epkg command [package(s)]
+
+			epkg is a simple wrapper around portage, gentoolkit, and eix that provides an
+			apt-get/yum-alike interface to these commands, to assist people transitioning from
+			Debian/RedHat-based systems to Gentoo.
+
+			Commands [equivalent Gentoo command]:
+			    install - Install new packages [emerge -av package(s)]
+			    remove - Remove packages safely [emerge --depclean -av packages(s)]
+			    update - Retrieve updated portage tree [eix-sync]
+			    upgrade - Update installed packages [emerge -NDuav --with-bdeps=y @system world]
+			    search - Search for packages [eix package]
+			    autoremove - Remove packages that are no longer needed [emerge --depclean -a]
+			    autoclean - Remove sources for packages no longer installed [eclean-dist -df]
+			    clean - Remove *ALL* package sources [rm -rf $DISTDIR/*]
+			    forceremove - *Unsafely* remove packages [emerge --unmerge -av package(s)]
+			    listfiles - List the files belonging to a package [equery files package]
+			    listinstalled - List installed packages [equery list]
+			    provides - List the installed package(s) which own the indicated file [equery belongs file]
+			    verify - Verify a package's installed files match the checksum and timestamp they had when first installed [equery check -o package]
+			    verifyall - Same as above, but against all installed packages [equery check -o '*']
+			    sysinfo - Display information about installed core packages and portage configuration [emerge --info]
+
+			You can pass arbitrary parameters to us after the command you want, and we'll
+			forward them on to the underlying command.
+
+			See epkg(1), emerge(1), equery(1), eix(1), and eclean(1) for more information.
+
+			This epkg has Extra-super Cow Powers.
+		EOH
 		;;
 esac
