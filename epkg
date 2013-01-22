@@ -97,7 +97,7 @@ case "$action" in
 
 			See epkg(1), emerge(1), equery(1), eix(1), and eclean(1) for more information.
 
-			This epkg has Extra-super Cow Powers.
+			We immediately bought some hats so we'd blend in.
 		EOH
 		;;
 esac
