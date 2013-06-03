@@ -44,7 +44,7 @@ case "$action" in
 		equery files "$@"
 		;;
 	listinstalled)
-		equery list "$@"
+		equery list '*' "$@"
 		;;
 	provides)
 		equery belongs "$@"
@@ -86,7 +86,7 @@ case "$action" in
 			    clean - Remove *ALL* package sources [rm -rf $DISTDIR/*]
 			    forceremove - *Unsafely* remove packages [emerge --unmerge -av package(s)]
 			    listfiles - List the files belonging to a package [equery files package]
-			    listinstalled - List installed packages [equery list]
+			    listinstalled - List installed packages [equery list '*']
 			    provides - List the installed package(s) which own the indicated file [equery belongs file]
 			    verify - Verify a package's installed files match the checksum and timestamp they had when first installed [equery check -o package]
 			    verifyall - Same as above, but against all installed packages [equery check -o '*']
