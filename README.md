@@ -27,4 +27,4 @@ epkg is currently only Gentoo and Funtoo compatible. Compatibility with other di
 
 ## Licensing ##
 
-This code is licensed under the Public Domain.
+This code is licensed under the 2-clause BSD License. Please see the LICENSE file for details.
